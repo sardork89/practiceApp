@@ -4,20 +4,16 @@ import {StyleSheet, Text, TextInput, View} from 'react-native';
 type Props = {
   title: string;
   color?: string;
+  onChange: (value: string) => void;
+  value: string;
 };
-const Input: FC<Props> = ({title, color}) => {
-  const [text, onChangeText] = useState('Useless Text');
-
+const Input: FC<Props> = ({title, color, onChange, value}) => {
   return (
     <View>
       <Text style={[styles.text, color ? {color: color} : undefined]}>
         {title}
       </Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={onChangeText}
-        value={text}
-      />
+      <TextInput style={styles.input} onChangeText={onChange} value={value} />
     </View>
   );
 };

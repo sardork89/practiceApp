@@ -1,15 +1,30 @@
-import React from 'react';
-import {Image, StyleSheet, View} from 'react-native';
+import React, {useState} from 'react';
+import {
+  Image,
+  Keyboard,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import Assets from '../../assets.ts';
 import Input from '../../components/Input';
+import Button from '../../components/Button';
 
 const FirstScreen = () => {
+  const [login, setLogin] = useState('');
+  const [parol, setParol] = useState('');
+
+  const hasButton = login.length > 0 && parol.length > 0;
+
   return (
-    <View style={s.block}>
-      <Image source={Assets.logo} style={s.image} />
-      <Input title={'Логин'} />
-      <Input title={'Пароль'} />
-    </View>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={s.block}>
+        <Image source={Assets.logo} style={s.image} />
+        <Input title={'Логин'} value={login} onChange={setLogin} />
+        <Input title={'Пароль'} value={parol} onChange={setParol} />
+        {hasButton ? <Button title={'TIP'} /> : undefined}
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
